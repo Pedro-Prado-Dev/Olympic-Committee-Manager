@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="max-w-4xl mx-auto mt-10">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-6">Medals</h2>
+
+        <a href="{{ url_for('medal.medal_create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Add New Medal
+        </a>
+
+        <table class="table-auto w-full mt-4">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">ID</th>
+                    <th class="px-4 py-2">Type</th>
+                    <th class="px-4 py-2">Event</th>
+                    <th class="px-4 py-2">Country</th>
+                    <th class="px-4 py-2">Athletes</th>
+                    <th class="px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medal in medals %}
+                <tr>
+                    <td class="border px-4 py-2">{{ medal.id }}</td>
+                    <td class="border px-4 py-2">{{ medal.type }}</td>
+                    <td class="border px-4 py-2">{{ medal.event }}</td>
+                    <td class="border px-4 py-2">{{ medal.country.name }}</td>
+                    <td class="border px-4 py-2">
+                        {% for athlete in medal.athletes %}
+                            {{ athlete.name }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="border px-4 py-2">
+                        <a href="{{ url_for('medal.medal_edit', medal_id=medal.id) }}" class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">Edit</a>
+                        <form method="POST" action="{{ url_for('medal.medal_delete', medal_id=medal.id) }}" style="display:inline;">
+                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="max-w-lg mx-auto mt-10">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-6">
+            {% if medal %} Edit Medal {% else %} Create Medal {% endif %}
+        </h2>
+        
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="mb-4">
+                {{ form.type.label(class_="block text-gray-700 text-sm font-bold mb-2") }}
+                {{ form.type(class_="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+                {% for error in form.type.errors %}
+                    <span class="text-red-500 text-sm">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="mb-4">
+                {{ form.event.label(class_="block text-gray-700 text-sm font-bold mb-2") }}
+                {{ form.event(class_="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+                {% for error in form.event.errors %}
+                    <span class="text-red-500 text-sm">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="mb-4">
+                {{ form.sport_id.label(class_="block text-gray-700 text-sm font-bold mb-2") }}
+                {{ form.sport_id(class_="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+                {% for error in form.sport_id.errors %}
+                    <span class="text-red-500 text-sm">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="mb-4">
+                {{ form.country_id.label(class_="block text-gray-700 text-sm font-bold mb-2") }}
+                {{ form.country_id(class_="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+                {% for error in form.country_id.errors %}
+                    <span class="text-red-500 text-sm">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="mb-4">
+                {{ form.athletes.label(class_="block text-gray-700 text-sm font-bold mb-2") }}
+                {{ form.athletes(class_="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+                {% for error in form.athletes.errors %}
+                    <span class="text-red-500 text-sm">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="mb-4">
+                {{ form.submit(class_="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}
