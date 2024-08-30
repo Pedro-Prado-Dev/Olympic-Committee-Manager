@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="max-w-4xl mx-auto mt-10">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-6">Athletes</h2>
+
+        <a href="{{ url_for('athlete.athlete_create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Add Athlete
+        </a>
+
+        <table class="table-auto w-full mt-4">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">Name</th>
+                    <th class="px-4 py-2">Country</th>
+                    <th class="px-4 py-2">Sport</th>
+                    <th class="px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for athlete in athletes %}
+                <tr>
+                    <td class="border px-4 py-2">{{ athlete.name }}</td>
+                    <td class="border px-4 py-2">{{ athlete.country.name }}</td>
+                    <td class="border px-4 py-2">{{ athlete.sport.name }}</td>
+                    <td class="border px-4 py-2">
+                        <a href="{{ url_for('athlete.athlete_edit', athlete_id=athlete.id) }}" class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">Edit</a>
+                        <form method="POST" action="{{ url_for('athlete.athlete_delete', athlete_id=athlete.id) }}" style="display:inline;">
+                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
