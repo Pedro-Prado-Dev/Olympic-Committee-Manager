@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Olympic Committee Manager{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-800 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">Olympic Manager</a>
+            <ul class="flex space-x-4">
+                <li><a href="/" class="hover:underline">Athletes</a></li>
+                <li><a href="/countries" class="hover:underline">Countries</a></li>
+                <li><a href="/medals" class="hover:underline">Medals</a></li>
+                <li><a href="/sports" class="hover:underline">Sports</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <div class="container mx-auto py-8">
+            {% block content %}
+            <!-- Conteúdo específico da página será inserido aqui -->
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>© 2024 Olympic Committee Manager. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
