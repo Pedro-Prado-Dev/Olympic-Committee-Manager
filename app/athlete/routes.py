@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, session
 from flask.views import MethodView
+from flask_mail import Message
 from app import db
+from app import mail
 from app.athlete.model import Athlete
 from app.athlete.form import AthleteForm
 
@@ -25,6 +27,11 @@ class AthleteCreateView(MethodView):
             athlete = Athlete(name=form.name.data, country_id=form.country_id.data, sport_id=form.sport_id.data)
             db.session.add(athlete)
             db.session.commit()
+
+            msg = Message('Novo atleta cadastrado', recipients=['pedrohdppaiva@gmail.com'])
+            msg.body = f'O atleta {athlete.name} foi cadastrado com sucesso.'
+            mail.send(msg)
+
             flash('Athlete created successfully!', 'success')
             return redirect(url_for('athlete.athlete_list'))
         return render_template('athlete/create_edit.html', form=form, title='Create Athlete')

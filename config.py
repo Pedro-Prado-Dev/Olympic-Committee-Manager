@@ -22,3 +22,11 @@ class Config:
             database='olympic'
         )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PORT = 465
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = 'pedrohdppaiva@gmail.com'
+    MAIL_PASSWORD = 'e n b k y v f w f j z i p b d v'
+    MAIL_DEFAULT_SENDER = 'pedrohdppaiva@gmail.com'
